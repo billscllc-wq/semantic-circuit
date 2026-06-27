@@ -15,7 +15,7 @@
 <style>*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   :root {
     --bg: #fafaf8;
-    --bg-alt: #f4f1fb;
+    --bg-alt: #312e81;
     --surface: #ffffff;
     --border: #e2e0d8;
     --border-light: #eeece4;
@@ -97,6 +97,14 @@
   .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
   .g2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
   @media(max-width:768px) { .g3,.g2 { grid-template-columns:1fr; } .principle { grid-template-columns:1fr; gap:0.5rem; } }
+  /* indigo knockout sections */
+  #practice, #about { color:#ffffff; }
+  #practice .mono, #about .mono { color:#c7d2fe !important; }
+  #practice p, #about p { color:#d2cfee !important; }
+  #about .serif { color:#ffffff !important; }
+  #practice .practice-card { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.16); }
+  #practice .practice-card:hover { border-color:rgba(255,255,255,0.30); box-shadow:none; }
+  #about div[style*="var(--surface)"] { background:rgba(255,255,255,0.06) !important; border-color:rgba(255,255,255,0.16) !important; }
 </style>
 </head>
 <body>
