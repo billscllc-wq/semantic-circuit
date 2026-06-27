@@ -254,13 +254,15 @@
       <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.12;letter-spacing:-0.02em;font-weight:600;">Start with a conversation.</h2>
       <p style="color:var(--text-dim);font-size:0.95rem;line-height:1.7;margin-top:1rem;">Every good project starts with understanding. Tell me what you're working on.</p>
     </div>
-    <form class="rv" style="display:flex;flex-direction:column;gap:0.85rem;" onsubmit="event.preventDefault();this.style.display='none';document.getElementById('thanks').style.display='block';">
+    <form class="rv" style="display:flex;flex-direction:column;gap:0.85rem;" onsubmit="return scSubmit(this,event)">
+      <input type="hidden" name="_subject" value="New inquiry from semanticcircuit.com">
+      <input type="hidden" name="_captcha" value="false">
       <div class="g2" style="gap:0.85rem;">
-        <input type="text" placeholder="Name" required="" class="fi">
-        <input type="email" placeholder="Email" required="" class="fi">
+        <input type="text" name="name" placeholder="Name" required="" class="fi">
+        <input type="email" name="email" placeholder="Email" required="" class="fi">
       </div>
-      <input type="text" placeholder="Organization" class="fi">
-      <select required="" class="fi" style="appearance:none;">
+      <input type="text" name="organization" placeholder="Organization" class="fi">
+      <select name="reason" required="" class="fi" style="appearance:none;">
         <option value="" disabled="" selected="">What brings you here?</option>
         <option>Content design for a product</option>
         <option>UX strategy engagement</option>
@@ -268,7 +270,7 @@
         <option>Information architecture</option>
         <option>Something else</option>
       </select>
-      <textarea rows="4" placeholder="Tell me about the project" class="fi" style="resize:none;"></textarea>
+      <textarea name="message" rows="4" placeholder="Tell me about the project" class="fi" style="resize:none;"></textarea>
       <button type="submit" class="cta" style="justify-content:center;width:100%;">Send</button>
     </form>
     <div id="thanks" style="display:none;text-align:center;padding:3rem 0;">
@@ -295,6 +297,16 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+function scSubmit(form, e){
+  e.preventDefault();
+  var btn = form.querySelector('button[type=submit]');
+  if(btn){ btn.textContent = 'Sending…'; btn.disabled = true; }
+  fetch('https://formsubmit.co/ajax/bill@semanticcircuit.com', { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form) })
+    .then(function(r){ return r.json(); })
+    .then(function(){ form.style.display='none'; document.getElementById('thanks').style.display='block'; })
+    .catch(function(){ if(btn){ btn.textContent='Send'; btn.disabled=false; } alert('Sorry, something went wrong. Please email bill@semanticcircuit.com directly.'); });
+  return false;
+}
 </script>
 
 
