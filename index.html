@@ -168,7 +168,7 @@
     <div style="max-width:680px;position:relative;z-index:1;">
       <div class="rv mono v" style="font-size:0.7rem;letter-spacing:0.12em;color:var(--circuit);text-transform:uppercase;margin-bottom:0.7rem;">Content Design &amp; UX Strategy</div>
       <h1 class="rv v" style="font-size:clamp(2.5rem,6vw,4rem);line-height:1.08;letter-spacing:-0.025em;font-weight:600;color:var(--ink);">
-        Content is<br>architecture.
+        Content is<br><span id="rotw" style="display:inline-block;transition:opacity 0.45s ease;">architecture.</span>
       </h1>
       <p class="rv v" style="margin-top:0.9rem;font-size:clamp(1rem,1.8vw,1.15rem);line-height:1.75;color:var(--text-dim);max-width:520px;">
         The words aren't decoration. They're the structure. When content is designed—not just written—people find what they need, understand what they see, and trust what they read.
@@ -358,6 +358,23 @@ function scSubmit(form, e){
   fit();
   window.addEventListener('load', fit);
   window.addEventListener('resize', fit);
+})();
+</script>
+
+<script>
+(function(){
+  var el = document.getElementById('rotw');
+  if (!el) return;
+  var words = ['design.','experience.','product.','everything.','architecture.'];
+  var i = -1;
+  setInterval(function(){
+    el.style.opacity = '0';
+    setTimeout(function(){
+      i = (i + 1) % words.length;
+      el.textContent = words[i];
+      el.style.opacity = '1';
+    }, 460);
+  }, 2600);
 })();
 </script>
 
