@@ -105,9 +105,11 @@
   #practice .practice-card { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.16); }
   #practice .practice-card:hover { border-color:rgba(255,255,255,0.30); box-shadow:none; }
   #about div[style*="var(--surface)"] { background:rgba(255,255,255,0.06) !important; border-color:rgba(255,255,255,0.16) !important; }
-  /* hero circuit animation */
-  .hero-circuit { position:absolute; top:0; right:0; bottom:0; width:46%; max-width:520px; z-index:0; pointer-events:none; }
-  @media(max-width:768px){ .hero-circuit { display:none; } }
+  /* page circuit animation */
+  body { position:relative; }
+  .page-circuit { position:absolute; top:0; right:0; bottom:0; width:46%; max-width:520px; z-index:0; pointer-events:none; }
+  body > section, body > footer { position:relative; z-index:1; }
+  @media(max-width:768px){ .page-circuit { display:none; } }
 </style>
 </head>
 <body>
@@ -127,35 +129,41 @@
   </div>
 </nav>
 
+<svg class="page-circuit" aria-hidden="true" viewBox="0 0 260 1600" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#312e81" stroke-opacity="0.32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path id="pv1" d="M70 0 V300 H170 V620 H90 V940 H190 V1260 H110 V1600"/>
+    <path id="pv2" d="M205 0 V210 H110 V470 H215 V780 H120 V1090 H210 V1380 H130 V1600"/>
+    <path id="pv3" d="M140 0 V130 H45 V430 H150 V740 H55 V1040 H155 V1340 H75 V1600"/>
+  </g>
+  <g fill="#312e81" fill-opacity="0.45">
+    <circle cx="70" cy="300" r="3"/><circle cx="170" cy="620" r="3"/><circle cx="90" cy="940" r="3"/><circle cx="190" cy="1260" r="3"/>
+    <circle cx="205" cy="210" r="3"/><circle cx="110" cy="470" r="3"/><circle cx="215" cy="780" r="3"/><circle cx="120" cy="1090" r="3"/><circle cx="210" cy="1380" r="3"/>
+    <circle cx="140" cy="130" r="3"/><circle cx="45" cy="430" r="3"/><circle cx="150" cy="740" r="3"/><circle cx="55" cy="1040" r="3"/><circle cx="155" cy="1340" r="3"/>
+  </g>
+  <g opacity="0">
+    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
+    <animateMotion dur="11s" begin="0s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv1"/></animateMotion>
+    <animate attributeName="opacity" dur="11s" begin="0s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
+  </g>
+  <g opacity="0">
+    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
+    <animateMotion dur="13s" begin="3.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv2"/></animateMotion>
+    <animate attributeName="opacity" dur="13s" begin="3.5s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
+  </g>
+  <g opacity="0">
+    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
+    <animateMotion dur="9.5s" begin="6.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.7;1" calcMode="linear"><mpath href="#pv3"/></animateMotion>
+    <animate attributeName="opacity" dur="9.5s" begin="6.5s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.67;0.7;1"/>
+  </g>
+  <g opacity="0">
+    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
+    <animateMotion dur="11s" begin="8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv1"/></animateMotion>
+    <animate attributeName="opacity" dur="11s" begin="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
+  </g>
+</svg>
+
 <!-- HERO -->
 <section style="padding:clamp(2.25rem,4vh,3rem) 0 clamp(1.5rem,3vh,2.25rem);position:relative;overflow:hidden;">
-  <svg class="hero-circuit" aria-hidden="true" viewBox="0 0 320 440" fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#312e81" stroke-opacity="0.38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path id="hc1" d="M40 30 H120 V130 H210 V250 H110 V410"/>
-      <path id="hc2" d="M285 20 V120 H190 V235 H265 V360 H175"/>
-      <path id="hc3" d="M165 4 V70 H85 V170 H235 V300 H300"/>
-    </g>
-    <g fill="#312e81" fill-opacity="0.50">
-      <circle cx="40" cy="30" r="3.5"/><circle cx="120" cy="130" r="3"/><circle cx="210" cy="250" r="3"/><circle cx="110" cy="410" r="3.5"/>
-      <circle cx="285" cy="20" r="3.5"/><circle cx="190" cy="235" r="3"/><circle cx="175" cy="360" r="3.5"/>
-      <circle cx="85" cy="170" r="3"/><circle cx="300" cy="300" r="3.5"/>
-    </g>
-    <g opacity="0">
-      <circle r="11" fill="#2563eb" opacity="0.28"/><circle r="4" fill="#2563eb"/>
-      <animateMotion dur="6s" begin="0.5s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.45;1" calcMode="linear"><mpath href="#hc1"/></animateMotion>
-      <animate attributeName="opacity" dur="6s" begin="0.5s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.06;0.4;0.46;1"/>
-    </g>
-    <g opacity="0">
-      <circle r="11" fill="#2563eb" opacity="0.28"/><circle r="4" fill="#2563eb"/>
-      <animateMotion dur="7.5s" begin="2.6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#hc2"/></animateMotion>
-      <animate attributeName="opacity" dur="7.5s" begin="2.6s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.05;0.45;0.5;1"/>
-    </g>
-    <g opacity="0">
-      <circle r="11" fill="#2563eb" opacity="0.28"/><circle r="4" fill="#2563eb"/>
-      <animateMotion dur="5.5s" begin="4.2s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear"><mpath href="#hc3"/></animateMotion>
-      <animate attributeName="opacity" dur="5.5s" begin="4.2s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.07;0.36;0.41;1"/>
-    </g>
-  </svg>
   <div class="container">
     <div style="max-width:680px;position:relative;z-index:1;">
       <div class="rv mono v" style="font-size:0.7rem;letter-spacing:0.12em;color:var(--circuit);text-transform:uppercase;margin-bottom:0.7rem;">Content Design &amp; UX Strategy</div>
