@@ -23,6 +23,15 @@ main{flex:1}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--circuit);text-transform:uppercase;margin-bottom:0.5rem}
 .head h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.1;letter-spacing:-0.02em;font-weight:600;color:var(--ink)}
 .figma{display:block;width:100%;height:78vh;min-height:520px;border:1px solid var(--border-light);border-radius:12px;background:#fff}
+.gate{border:1px solid var(--border-light);border-radius:12px;background:#fff;min-height:520px;display:flex;align-items:center;justify-content:center;text-align:center;padding:1.5rem}
+.gate .inner{max-width:340px;width:100%}
+.gate h2{font-family:'Newsreader',serif;font-size:1.6rem;font-weight:600;color:var(--ink)}
+.gate p{color:var(--text-dim);font-size:0.9rem;line-height:1.6;margin-top:0.6rem}
+.gate form{margin-top:1.25rem;display:flex;flex-direction:column;gap:0.6rem}
+.gate input{width:100%;padding:0.8rem 1rem;background:var(--bg);border:1px solid var(--border-light);border-radius:8px;font-family:inherit;font-size:0.95rem;color:var(--text);outline:none;transition:border-color 0.2s}
+.gate input:focus{border-color:var(--circuit)}
+.gate button{width:100%;padding:0.8rem;background:var(--circuit);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:0.9rem;font-weight:600;cursor:pointer}
+.gate .err{color:#dc2626;font-size:0.8rem;margin-top:0.6rem;height:1rem;visibility:hidden}
 .note{font-size:0.78rem;color:var(--text-muted);margin:0.75rem 0 0}
 .note a{color:var(--circuit);text-decoration:none}
 .foot-pad{padding-bottom:1.75rem}
@@ -49,12 +58,46 @@ footer .cr{font-size:0.65rem;color:var(--text-muted);letter-spacing:0.05em}
     <h1>Selected work</h1>
   </div>
   <div class="container foot-pad">
-    <iframe class="figma" src="https://embed.figma.com/design/SubNT1PBZ57mGGJuwi1m9A/Dorman-Case-Studies-WIP?node-id=206-2&embed-host=share" allowfullscreen loading="lazy" title="Dorman Case Studies"></iframe>
-    <p class="note">Live working file &middot; <a href="https://www.figma.com/design/SubNT1PBZ57mGGJuwi1m9A/Dorman-Case-Studies-WIP?node-id=206-2" target="_blank" rel="noopener">open in Figma</a></p>
+    <div class="gate" id="gate"><div class="inner">
+      <div class="eyebrow">Protected</div>
+      <h2>Enter password to view</h2>
+      <p>Selected case studies are password-protected while the work is in progress.</p>
+      <form id="gateForm" autocomplete="off">
+        <input id="gatePw" type="password" placeholder="Password" autocomplete="off" aria-label="Password">
+        <button type="submit">Enter</button>
+      </form>
+      <p class="err" id="gateErr">Incorrect password. Try again.</p>
+    </div></div>
+    <iframe class="figma" id="figma" data-src="https://embed.figma.com/design/SubNT1PBZ57mGGJuwi1m9A/Dorman-Case-Studies-WIP?node-id=206-2&embed-host=share" allowfullscreen loading="lazy" title="Dorman Case Studies" style="display:none"></iframe>
+    <p class="note" id="csnote" style="display:none">Live working file &middot; <a href="https://www.figma.com/design/SubNT1PBZ57mGGJuwi1m9A/Dorman-Case-Studies-WIP?node-id=206-2" target="_blank" rel="noopener">open in Figma</a></p>
   </div>
 </main>
 <footer><div class="container inner">
   <div><div class="brand">Semantic Circuit</div><div class="tag">Content Design &amp; UX Strategy</div></div>
   <div class="cr">Copyright 2026. All rights reserved. &nbsp;&middot;&nbsp; Powered by Bravetto</div>
 </div></footer>
+<script>
+(function(){
+  var PW = 'ultraviolet';
+  var gate = document.getElementById('gate');
+  var form = document.getElementById('gateForm');
+  var pw = document.getElementById('gatePw');
+  var err = document.getElementById('gateErr');
+  var frame = document.getElementById('figma');
+  var note = document.getElementById('csnote');
+  function unlock(){
+    if (frame.dataset.src) frame.src = frame.dataset.src;
+    gate.style.display = 'none';
+    frame.style.display = 'block';
+    note.style.display = '';
+    try { sessionStorage.setItem('cs_ok','1'); } catch(e){}
+  }
+  try { if (sessionStorage.getItem('cs_ok') === '1') unlock(); } catch(e){}
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (pw.value.trim().toLowerCase() === PW) { unlock(); }
+    else { err.style.visibility = 'visible'; pw.value = ''; pw.focus(); }
+  });
+})();
+</script>
 </body></html>
