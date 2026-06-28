@@ -97,6 +97,14 @@
   .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
   .g2 { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
   @media(max-width:768px) { .g3,.g2 { grid-template-columns:1fr; } .principle { grid-template-columns:1fr; gap:0.5rem; } }
+  .skip { position:absolute; left:-9999px; top:0; z-index:300; background:var(--circuit); color:#fff; padding:0.6rem 1rem; border-radius:0 0 8px 0; font-size:0.85rem; font-weight:600; text-decoration:none; }
+  .skip:focus { left:0; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:2px solid var(--circuit); outline-offset:2px; border-radius:2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+    .rv { opacity:1 !important; transform:none !important; }
+    .page-circuit g[opacity] { display:none; }
+  }
   /* indigo knockout sections */
   #practice, #about { color:#ffffff; }
   #practice .mono, #about .mono { color:#c7d2fe !important; }
@@ -108,11 +116,12 @@
   /* page circuit animation */
   body { position:relative; }
   .page-circuit { position:absolute; top:0; right:0; bottom:0; width:46%; max-width:520px; z-index:0; pointer-events:none; }
-  body > section, body > footer { position:relative; z-index:1; }
+  section, footer { position:relative; z-index:1; }
   @media(max-width:768px){ .page-circuit { display:none; } }
 </style>
 </head>
 <body>
+<a href="#main" class="skip">Skip to content</a>
 
 <!-- NAV -->
 <nav>
@@ -162,6 +171,7 @@
   </g>
 </svg>
 
+<main id="main">
 <!-- HERO -->
 <section style="padding:clamp(2.25rem,4vh,3rem) 0 clamp(1.5rem,3vh,2.25rem);position:relative;overflow:hidden;">
   <div class="container">
@@ -299,11 +309,11 @@
       <input type="hidden" name="_subject" value="New inquiry from semanticcircuit.com">
       <input type="hidden" name="_captcha" value="false">
       <div class="g2" style="gap:0.85rem;">
-        <input type="text" name="name" placeholder="Name" required="" class="fi">
-        <input type="email" name="email" placeholder="Email" required="" class="fi">
+        <input type="text" name="name" placeholder="Name" required="" aria-label="Name" class="fi">
+        <input type="email" name="email" placeholder="Email" required="" aria-label="Email" class="fi">
       </div>
-      <input type="text" name="organization" placeholder="Organization" class="fi">
-      <select name="reason" required="" class="fi" style="appearance:none;">
+      <input type="text" name="organization" placeholder="Organization" aria-label="Organization" class="fi">
+      <select name="reason" required="" aria-label="What brings you here?" class="fi" style="appearance:none;">
         <option value="" disabled="" selected="">What brings you here?</option>
         <option>Content design for a product</option>
         <option>UX strategy engagement</option>
@@ -311,7 +321,7 @@
         <option>Information architecture</option>
         <option>Something else</option>
       </select>
-      <textarea name="message" rows="4" placeholder="Tell me about the project" class="fi" style="resize:none;"></textarea>
+      <textarea name="message" rows="4" placeholder="Tell me about the project" aria-label="Tell me about the project" class="fi" style="resize:none;"></textarea>
       <button type="submit" class="cta" style="justify-content:center;width:100%;">Send</button>
     </form>
     <div id="thanks" style="display:none;text-align:center;padding:3rem 0;">
@@ -320,6 +330,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer style="border-top:1px solid var(--border-light);padding:2rem 0;">
@@ -366,6 +377,7 @@ function scSubmit(form, e){
   if (!el) return;
   var words = ['design.','experience.','product.','everything.','architecture.'];
   var i = -1;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   setInterval(function(){
     el.style.opacity = '0';
     setTimeout(function(){
