@@ -349,5 +349,16 @@ function scSubmit(form, e){
 }
 </script>
 
+<script>
+(function(){
+  var c = document.querySelector('.page-circuit');
+  var a = document.getElementById('about');
+  if (!c || !a) return;
+  function fit(){ c.style.bottom = 'auto'; c.style.height = (a.offsetTop + a.offsetHeight) + 'px'; }
+  fit();
+  window.addEventListener('load', fit);
+  window.addEventListener('resize', fit);
+})();
+</script>
 
 </body></html>
