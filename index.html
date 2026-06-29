@@ -353,9 +353,9 @@ function scSubmit(form, e){
 <script>
 (function(){
   var c = document.querySelector('.page-circuit');
-  var a = document.getElementById('about');
-  if (!c || !a) return;
-  function fit(){ c.style.bottom = 'auto'; c.style.height = (a.offsetTop + a.offsetHeight) + 'px'; }
+  var f = document.querySelector('footer');
+  if (!c || !f) return;
+  function fit(){ c.style.bottom = 'auto'; c.style.height = (f.offsetTop + f.offsetHeight) + 'px'; }
   fit();
   window.addEventListener('load', fit);
   window.addEventListener('resize', fit);
