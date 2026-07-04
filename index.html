@@ -211,21 +211,6 @@
     <animateMotion dur="17s" begin="16s" repeatCount="indefinite" keyPoints="1;0;0" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv2"/></animateMotion>
     <animate attributeName="opacity" dur="17s" begin="16s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
   </g>
-  <g opacity="0">
-    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
-    <animateMotion dur="17s" begin="3s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv3"/></animateMotion>
-    <animate attributeName="opacity" dur="17s" begin="3s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
-  </g>
-  <g opacity="0">
-    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
-    <animateMotion dur="17s" begin="9s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv3"/></animateMotion>
-    <animate attributeName="opacity" dur="17s" begin="9s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
-  </g>
-  <g opacity="0">
-    <circle r="10" fill="#2563eb" opacity="0.26"/><circle r="3.6" fill="#2563eb"/>
-    <animateMotion dur="17s" begin="15s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear"><mpath href="#pv3"/></animateMotion>
-    <animate attributeName="opacity" dur="17s" begin="15s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.03;0.69;0.72;1"/>
-  </g>
 </svg>
 
 <main id="main">
@@ -350,29 +335,7 @@
   <div class="container" style="max-width:600px;">
     <div class="rv" style="text-align:center;margin-bottom:1rem;">      <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.12;letter-spacing:-0.02em;font-weight:600;">Contact</h2>
     </div>
-    <form class="rv" style="display:flex;flex-direction:column;gap:0.85rem;" onsubmit="return scSubmit(this,event)">
-      <input type="hidden" name="_subject" value="New inquiry from semanticcircuit.com">
-      <input type="hidden" name="_captcha" value="false">
-      <div class="g2" style="gap:0.85rem;">
-        <input type="text" name="name" placeholder="Name" required="" aria-label="Name" class="fi">
-        <input type="email" name="email" placeholder="Email" required="" aria-label="Email" class="fi">
-      </div>
-      <input type="text" name="organization" placeholder="Organization" aria-label="Organization" class="fi">
-      <select name="reason" required="" aria-label="What brings you here?" class="fi" style="appearance:none;">
-        <option value="" disabled="" selected="">What brings you here?</option>
-        <option>Content design for a product</option>
-        <option>UX strategy engagement</option>
-        <option>Content audit</option>
-        <option>Information architecture</option>
-        <option>Something else</option>
-      </select>
-      <textarea name="message" rows="4" placeholder="Tell me about the project" aria-label="Tell me about the project" class="fi" style="resize:none;"></textarea>
-      <button type="submit" class="cta" style="justify-content:center;width:100%;">Send</button>
-    </form>
-    <div id="thanks" style="display:none;text-align:center;padding:3rem 0;">
-      <div class="serif" style="font-size:2rem;font-weight:600;color:var(--circuit);margin-bottom:1rem;">Received.</div>
-      <p style="color:var(--text-dim);line-height:1.7;">I'll be in touch within a day. Good conversations don't start with a form—they start with listening.</p>
-    </div>
+    <p class="rv" style="text-align:center;color:var(--text-dim);font-size:1.05rem;line-height:1.7;">Start a conversation — <a href="mailto:bill@semanticcircuit.com" style="color:var(--circuit);text-decoration:none;">bill@semanticcircuit.com</a></p>
   </div>
 </section>
 </main>
